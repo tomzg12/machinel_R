@@ -1,0 +1,42 @@
+---
+title: "Tema 1"
+output:
+  pdf_document: default
+  html_notebook: default
+---
+
+```{r echo=FALSE}
+
+datos <- read.csv(file = 'https://raw.git,hubusercontent.com/joanby/r-course/master/data/tema1/auto-mpg.csv', header = TRUE, sep = ',', strings.na = '', stringsAsFactors = FALSE)
+
+print(datos)
+
+# Importar dataframe desde Raw de Github
+datos_no_header <-  read.csv(file = 'https://raw.githubusercontent.com/joanby/r-course/master/data/tema1/auto-mpg-noheader.csv', header = FALSE, sep = ',')
+
+# Header del dataframe
+head(datos_no_header,4)
+head(datos,1)
+
+# Agregando nombres de columnas
+datos_custom <- read.csv(file = 'https://raw.githubusercontent.com/joanby/r-course/master/data/tema1/auto-mpg-noheader.csv', 
+                         header = FALSE, sep = ',', 
+                         col.names = c('numero','millas','cilindros',
+                                       'desplazamiento','caballos','peso','acelera','modelo','año' ))
+         
+
+head(datos_custom,3)
+
+#Tratar con NA
+#na.strings = ''     
+
+
+q()
+
+
+```
+
+
+
+
+

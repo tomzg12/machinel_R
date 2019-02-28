@@ -1,0 +1,28 @@
+```{r}
+library(XML)
+library(methods)
+
+
+file_q4<-'http://raw.githubusercontent.com/joanby/r-course/master/data/tema1/cd_catalog.xml'  # Traer URL
+discFile_q4<-"F:/BD/GitHub/mlearningcourseR/q4_dat.xml"      # Carpeta de descarga y nombre del archivo
+download.file(file_q4, discFile_q4,quiet = TRUE)             # Instrucción de descarga
+dat_xml<-xmlInternalTreeParse(discFile_q4)                   # Parsear el XML
+rootNode<-xmlRoot(dat_xml)                                   # Nombrar el XML con rootNode
+
+rootNode        #Consultar el primer elemento
+print(rootNode)   
+
+# Construcción del dataframe
+   # x simboliza cada elemento del nodo raíz
+cds_data <- xmlSApply(rootNode, function (x) xmlSApply(x,xmlValue))
+
+# Encabezado del nuevo dataFrame
+head(cds_data)
+
+# Transponer el dataframe
+cds.catalog <- data.frame(t(cds_data), row.names=NULL)
+head(cds.catalog)
+
+
+
+```

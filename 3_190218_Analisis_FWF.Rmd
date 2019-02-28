@@ -1,0 +1,36 @@
+
+
+```{r}
+
+
+# Abriendo archivo fwf sin cabecera
+students_data <- read.fwf('F:/BD/GitHub/mlearningcourseR/r-course/data/tema1/student-fwf.txt',
+                      widths = c(4,15,20,15,4),  #5 columnas con el ancho de caracteres cada una
+                        col.names = c('id','nombre','email','carrera','anio'))
+
+head(students_data)
+View(students_data)  #Para ver el dataframe
+
+
+# Abriendo archivo con cabecera
+students_data_head <- read.fwf('F:/BD/GitHub/mlearningcourseR/r-course/data/tema1/student-fwf-header.txt',
+                      widths = c(4,15,20,15,4),  #5 columnas con el ancho de caracteres cada una
+                      header = TRUE, sep = '\t', # Separar con tabulador los headers
+                      skip = 2)   #Saltar las dos primeras líneas
+                      
+View(students_data_head)
+
+
+# PARA NO ABRIR COLUMNA DE MAIL
+# Abriendo archivo fwf sin cabecera
+students_data <- read.fwf('F:/BD/GitHub/mlearningcourseR/r-course/data/tema1/student-fwf.txt',
+                      widths = c(4,15, -20,15,4), # indicar la longitud en negativo
+                        col.names = c('id','nombre','carrera','anio'))  #Quitar el email de la lista
+
+
+View(students_data)
+
+
+
+```
+

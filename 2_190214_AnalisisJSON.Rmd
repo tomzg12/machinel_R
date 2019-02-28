@@ -1,0 +1,46 @@
+```{r}
+install.packages('curl')
+install.packages('jsonlite')
+library(jsonlite)
+library(curl)
+
+# No se agregan parámetros adicionales, traer el JSON
+
+# Traer un JSON
+dat.1<- fromJSON('https://raw.githubusercontent.com/joanby/r-course/master/data/tema1/students.json')
+
+# Traer otro JSON
+dat.2 <- fromJSON('https://raw.githubusercontent.com/joanby/r-course/master/data/tema1/student-courses.json')
+
+head(dat.2)
+
+
+dat.yahoo <- fromJSON('http://www.floatrates.com/daily/usd.json')
+
+head(dat.yahoo)
+
+
+# Acceso a JSOn con signos de dólar
+data_info <- dat.2$id
+data_info
+
+
+#Acceder con índices [filas de la 1 a la 2, columnas 1 a 5]
+dat.2[1:2,1:5]
+
+#Acceder con índices [filas 2, 5 y 8, y todas las columnas
+dat.2[c(2,5,8),]
+
+#Acceder con índices todas las filas, y columnas [2,5]
+print('Data1')
+dat.1[,c(2,5)]
+
+
+ #TOJSON es para exportar a JSON
+
+
+
+
+
+```
+
