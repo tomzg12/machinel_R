@@ -1,0 +1,60 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+```{r}
+
+# Importar el dataset
+auto <- read.csv('F:/BD/GitHub/mlearningcourseR/r-course/data/tema2/auto-mpg.csv',
+                 stringsAsFactors = FALSE)
+
+
+# Sobreescribir la variable "cilindros" para que sea una categoría
+auto$cylinders <- factor(auto$cylinders, 
+                         levels =c(3,4,5,6,8),
+                         labels=c('3cil','4cil','5cil','6cil','8cil'))
+
+# Función attach (para que forme parte el dataset de la estructura principal de R)
+attach(auto)
+
+# Para acceder a cualquier columna de auto, se escribe:
+head(cylinders)   # Evita escribir el signo de pesos
+
+# Crear un HISTROGRAMA (en el ejemplo se utiliza 'aceleración')
+
+hist(acceleration)
+
+# Personalizar histograma (color, etiquetas en ejes y título)
+
+hist(acceleration, 
+     col = 'yellow',
+     xlab = 'Aceleración',
+     ylab= 'Frecuencias',
+     main = 'Histograma de las aceleraciones',
+     breaks = 16)  # divisiones para el histograma
+
+
+# Crear un BOXPLOT(caja y bigotes) 
+
+boxplot(mpg,
+        xlab = 'Millas por galeón')
+
+# Método 2
+boxplot(mpg~model_year,    #Las millas por galeón en función del año
+        xlab  = 'Millas por galeón por año')
+
+boxplot(mpg~cylinders,
+        xlab= 'Consumo por número de cilindros'
+        )
+
+# Crear un SCATTERPLOT
+  #Y(vert)     #X (horizontal)
+plot(mpg   ~   horsepower)
+
+
+# Matriz de SCATTERPLOT (función pairs)
+
+pairs(~mpg+displacement+horsepower+weight, col = 'blue')
+
+
+```
