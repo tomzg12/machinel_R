@@ -2,6 +2,8 @@ install.packages('tm')
 install.packages('tidytext')
 install.packages('stringr')
 install.packages('wordcloud2')
+install.packages('wordcloud')
+install.packages('RColorBrewer')
 install.packages('syuzhet')
 
 library(NLP)
@@ -12,7 +14,8 @@ library(twitteR)
 library(tidytext)
 library(stringr)
 library(wordcloud2)
-library(syuzhet)
+library(RColorBrewer)
+library(wordcloud)
 
 ### Variables para la clave de la aplicación (TZG)
 #api_key.t             <- 'IUeej4NimyAv51CIUbtDoZB8a'
@@ -20,11 +23,19 @@ library(syuzhet)
 #access_token.t        <- '317107082-C0hEJHIURbThak1V9Wbj5emupVnkIvQQt8ovSr5E'
 #access_token_secret.t <- 'ahyBn2GTgtqt6I3AhINNnSUJVdUHMWzZh1VRW2lLpXHtc'
 
-### Variables para la clave de la aplicación (JGG)
-  api_key <- "Km07yXQyohsRRx6vr4DbKYF5C"
-  api_secret <- "RDMCCXdwdmDZL0zI2Polj4KGG8Mc86B0IjfRNjfjShQJtmle6P"
-  access_token <- "207177829-zzm2C1cG1oHxE77xgqGOpAay3PMBYhTpchEMtXBC"
-  access_token_secret <- "Xh5GIQkQbzJnIXoHezfrtxrSdSHtR4KMhL6xX8ggYS0ub"
+
+# 
+# ## Variables para la clave de la aplicación (JGG)
+# api_key <- "Km07yXQyohsRRx6vr4DbKYF5C"
+# api_secret <- "RDMCCXdwdmDZL0zI2Polj4KGG8Mc86B0IjfRNjfjShQJtmle6P"
+# access_token <- "207177829-zzm2C1cG1oHxE77xgqGOpAay3PMBYhTpchEMtXBC"
+# access_token_secret <- "Xh5GIQkQbzJnIXoHezfrtxrSdSHtR4KMhL6xX8ggYS0ub"
+
+## Variables para la clave de la aplicación (Web)
+api_key <- "lhoFGi7WwTCNweSwjLAf0pcsO"
+api_secret <- "HX5YP7MaRb0pri3G73tbIIqvv8qbUGiptsY4fsL9bCN6YjN9zv"
+access_token <- "920582805981188097-kydfkJ915usop34k1VQd9uMBVKTxnaL"
+access_token_secret <- "73LOfzcjfIPlUUNoDVOVXYt5uEpBPaiM16EnSk9HD7pUO"
 
 ### Instalar conexión con la api de Twitter
   setup_twitter_oauth(api_key,
@@ -130,6 +141,10 @@ library(syuzhet)
             # Ejecuta función (rango de filas)
             scores_by_range <- meansent(400,500)
             scores_by_range     
+          
+            # WordCloud
+        wordcloud(df.cl_txt, min.freq = 100, random.order = FALSE)
+            
             
 ### ---- Cluster analisis
             # convertir a palabras base
