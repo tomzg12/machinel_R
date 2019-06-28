@@ -1,0 +1,55 @@
+---
+title: "Gráficos con Markdown"
+author: "Tom"
+date: "13/6/2019"
+output:
+  pdf_document:
+    toc: yes
+  html_document:
+    theme: cosmo
+    toc: yes
+  word_document: default
+---
+# Loading data
+```{r loadingData, echo=FALSE, warning=FALSE}
+
+# Carga del dataset
+  auto <- read.csv('G:/BD/GitHub/mlearningcourseR/r-course/data/tema10/auto-mpg.csv')
+
+```
+# Datos preliminares
+
+* Después de cargar los datos, es recomendable mirar la información acerca de los primeros elementos del dataframe, la estructura de las columnas del mismo o incluso un resumen de los estadísticos básicos de cada uno.
+```{r}
+  head(auto)
+  summary(auto)
+  str(auto)
+
+```
+# Plot data
+* Puedes incrustar gráficos dentro del documento.
+```{r dispersion, echo = FALSE, fig.height= 4, fig.width= 10}
+
+plot(auto$mpg~auto$weight)
+
+
+```
+
+# Inline R (escribir un documento "dinámico")
+
+* Hemos hecho uso de un df de autos que contiene `r nrow(auto)` muestras de autos, y cada uno de ellos tienen `r ncol(auto)` variables.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+---
+title: "Untitled"
+author: "Tom"
+date: "13/6/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+  # library(kable)
+```
+
+
+```{r}
+
+library(htmlTable)
+library(knitr)
+
+      # HTML TABLE
+      summary(cars)
+      auto <- (cars)
+      str(auto)
+        
+      htmlTable(head(auto),
+                  caption = 'Tabla preliminar de datos',
+                  tfoot = '&dagger; Comentario sobre la tabla',
+                col.rgroup = c('none', '#F55555'), # Color filas
+                col.columns = c('#F7F7F8', '#F7F7F8'))
+```
+
+# Utilizando cable
+
+```{r}
+# install.packages('kableExtra')
+kable(head(auto), 'html')%>%
+kableExtra::kable_styling(bootstrap_options = c('striped',
+                                      'hover'), 
+                                      full_width = F,
+                            position = 'right')
+
+```
+
