@@ -17,27 +17,9 @@ library(wordcloud2)
 library(RColorBrewer)
 library(wordcloud)
 
-### Variables para la clave de la aplicaci髇 (TZG)
-#api_key.t             <- 'IUeej4NimyAv51CIUbtDoZB8a'
-#api_secret.t          <- 'VkRqiFp9ipjLM2bVWLBEtYaAhaLnaiBeiVQFoltP6n4t5YiZh6'
-#access_token.t        <- '317107082-C0hEJHIURbThak1V9Wbj5emupVnkIvQQt8ovSr5E'
-#access_token_secret.t <- 'ahyBn2GTgtqt6I3AhINNnSUJVdUHMWzZh1VRW2lLpXHtc'
 
 
-# 
-# ## Variables para la clave de la aplicaci髇 (JGG)
-# api_key <- "Km07yXQyohsRRx6vr4DbKYF5C"
-# api_secret <- "RDMCCXdwdmDZL0zI2Polj4KGG8Mc86B0IjfRNjfjShQJtmle6P"
-# access_token <- "207177829-zzm2C1cG1oHxE77xgqGOpAay3PMBYhTpchEMtXBC"
-# access_token_secret <- "Xh5GIQkQbzJnIXoHezfrtxrSdSHtR4KMhL6xX8ggYS0ub"
-
-## Variables para la clave de la aplicaci髇 (Web)
-api_key <- "lhoFGi7WwTCNweSwjLAf0pcsO"
-api_secret <- "HX5YP7MaRb0pri3G73tbIIqvv8qbUGiptsY4fsL9bCN6YjN9zv"
-access_token <- "920582805981188097-kydfkJ915usop34k1VQd9uMBVKTxnaL"
-access_token_secret <- "73LOfzcjfIPlUUNoDVOVXYt5uEpBPaiM16EnSk9HD7pUO"
-
-### Instalar conexi髇 con la api de Twitter
+### Instalar conexi贸n con la api de Twitter
   setup_twitter_oauth(api_key,
                     api_secret,
                     access_token, 
@@ -52,7 +34,7 @@ access_token_secret <- "73LOfzcjfIPlUUNoDVOVXYt5uEpBPaiM16EnSk9HD7pUO"
                         n = n,        # Cantidad de tweets a descargar
                         lang = 'es')     # Idioma
   
-  ### Inspecci髇 de twitters
+  ### Inspecci贸n de twitters
   # Crear un dataframe
   df.t <- do.call("rbind", lapply(tweets, as.data.frame))
   
@@ -133,12 +115,12 @@ access_token_secret <- "73LOfzcjfIPlUUNoDVOVXYt5uEpBPaiM16EnSk9HD7pUO"
             # Borrar columna del dataframe
             # df_clean = subset(df_clean, select = -c(sent) )
         
-            # Funci髇 para analizar los sentimientos en la columna de sentimientos      
+            # Funci贸n para analizar los sentimientos en la columna de sentimientos      
             meansent <- function(i,n){
               mean(df_clean$sentimiento[i:n])
             }
             
-            # Ejecuta funci髇 (rango de filas)
+            # Ejecuta funci贸n (rango de filas)
             scores_by_range <- meansent(400,500)
             scores_by_range     
           
@@ -149,17 +131,17 @@ access_token_secret <- "73LOfzcjfIPlUUNoDVOVXYt5uEpBPaiM16EnSk9HD7pUO"
 ### ---- Cluster analisis
             # convertir a palabras base
             twitterCorpus <- tm_map(df.cl_txt, stemDocument)
-            # Construir matriz de t閞minos del documento
+            # Construir matriz de t茅rminos del documento
             dtm <- DocumentTermMatrix(twitterCorpus)
             dtm            
             mat <- as.matrix(dtm)
             # Crear matriz de distancias
             d<- dist(mat)
-            # Incrustar matriz de distancias en un cluster, mediante el m閠odo ward.D
+            # Incrustar matriz de distancias en un cluster, mediante el m茅todo ward.D
             groups <- hclust(d, method = 'ward.D')
             #Graficar el cluster
             plot(groups, hang= 1)
-            # Podar el 醨bol
+            # Podar el 谩rbol
             cut = cutree(groups, k = 6)            
             newMat <- dplyr::bind_cols(df_clean, data.frame(cut))
             table(newMat$screenName,
